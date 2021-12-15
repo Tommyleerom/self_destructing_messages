@@ -1,24 +1,27 @@
-# README
+# Запуск приложения
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Для того, чтобы запустить приложение, выполните следующие команды у себя в окне терминала:
 
-Things you may want to cover:
+* Склонируйте репозиторий с GitHub и перейдите в папку приложения:
+```
+git clone https://github.com/Tommyleerom/self_destructing_messages.git
+cd self_destructing_messages
+```
 
-* Ruby version
+* Установите необходимые гемы приложения, указанные в файле `Gemfile`:
+```
+bundle install
+```
 
-* System dependencies
+* Создайте базу данных, запустите миграции для базы данных:
+```
+bundle exec rake db:create
+bundle exec rake db:migrate
+```
+Приложение использует СУБД `Postgresql`. При необходимости создайте нового пользователя в СУБД для этого приложения
+или измените СУБД на другую, изменив настройки файла `config/database.yml`.
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Запустите приложение:
+```
+bundle exec rails server
+```
