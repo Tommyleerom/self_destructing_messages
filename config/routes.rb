@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'messages#index'
+  root 'messages#new'
 
   resources :messages, except: %i[update edit]
 end
