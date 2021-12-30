@@ -14,9 +14,8 @@
   <tbody>
     <% @messages.each do |message| %>
       <tr>
-        <td><%= message.report %></td>
+        <td><%= link_to "message", controller: 'messages', action: "show", auth_token: message.auth_token %></td>
         <td><%= message.password %></td>
-        <td><%= link_to 'Show', controller: 'messages', action: "show", auth_token: message.auth_token %></td>
         <td><%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
