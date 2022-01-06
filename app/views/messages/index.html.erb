@@ -7,6 +7,9 @@
     <tr>
       <th>Report</th>
       <th>Password</th>
+      <th>Created</th>
+      <th>LifeTime</th>
+      <th>Decrypt</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,7 +19,9 @@
       <tr>
         <td><%= link_to "message", controller: 'messages', action: "show", auth_token: message.auth_token %></td>
         <td><%= message.password %></td>
-        <td><%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= message.created_at %></td>
+        <td><%= message.lifetime %></td>
+        <td><%= message.decrypt_message %></td>
       </tr>
     <% end %>
   </tbody>

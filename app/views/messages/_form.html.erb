@@ -21,6 +21,16 @@
     <%= form.password_field :password %>
   </div>
 
+  <div class="field">
+    <%= form.label :lifetime, 'Destroy after ... accesses' %>
+    <%= form.text_field :lifetime %>
+  </div>
+
+  <div class="field">
+    <%= form.label :time_to_delete, 'Destroy after ... minutes' %>
+    <%= text_field_tag :time_to_delete %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>

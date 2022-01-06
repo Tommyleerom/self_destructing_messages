@@ -1,23 +1,20 @@
 <p id="notice"><%= notice %></p>
 
-<div>
-  <strong>Report:</strong>
+<strong>Report:</strong>
   <% if params[:password] == @message.password %>
-    <%= @message.decrypt_message %>
+    <div><%= @message.decrypt_message %></div>
+    <% @message.update_attribute(:lifetime, @message.lifetime -= 1) %>
   <% else %>
-    <%= @message.report %>
+    <div><%= @message.report %></div>
+    <strong>To see the massage, please enter the password:</strong>
+    <div>
+    <%= form_with method: :get do |f| %>
+      <%= f.password_field :password %>
+      <%= f.submit "Submit" %>
+    <% end %>
+    </div>
   <% end %>
-</div>
-
-<strong>To see the massage, please enter the password:</strong>
-<div>
-  <%= form_with method: :get do |f| %>
-    <%= f.password_field :password %>
-    <%= f.submit "Submit" %>
-  <% end %>
-</div>
-<div>
-  <strong>Save link to this message:</strong>
-  <%= link_to message_url %>
-</div>
+<div><%= @message.lifetime %></div>
+<strong>Save link to this message:</strong>
+<%= link_to message_url %>
 <%= link_to 'Back', messages_path %>

@@ -1,5 +1,4 @@
 class MessagesController < ApplicationController
-  before_action :set_message, only: %i[ destroy ]
 
   def index
     @messages = Message.all
@@ -7,6 +6,7 @@ class MessagesController < ApplicationController
 
   def show
      @message = Message.find_by(auth_token: params[:auth_token])
+     @message.destroy if @message.lifetime < 1
   end
 
   def new
@@ -17,7 +17,8 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
     respond_to do |format|
       if @message.save
-        format.html { redirect_to message_path(params[:auth_token]=@message.auth_token), notice: "Message was successfully created." }
+        MessageJob.set(wait: params[:time_to_delete].to_i.minutes).perform_later(@message)
+        format.html { redirect_to message_path(params[:auth_token] = @message.auth_token), notice: "Message was successfully created." }
         format.json { render :show, status: :created, location: @message }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -26,21 +27,10 @@ class MessagesController < ApplicationController
     end
   end
 
-  def destroy
-    MessageJob.set(wait: 1.minute).perform_later(@message)
-    respond_to do |format|
-      format.html { redirect_to messages_url, notice: "Message was successfully destroyed." }
-      format.json { head :no_content }
-    end
-  end
-
   private
-    def set_message
-      @message = Message.find(params[:auth_token])
-    end
 
-    def message_params
-      params.require(:message).permit(:report, :password)
-    end
+  def message_params
+    params.require(:message).permit(:report, :password, :lifetime)
+  end
 
 end

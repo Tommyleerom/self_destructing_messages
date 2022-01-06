@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_29_064314) do
+ActiveRecord::Schema.define(version: 2022_01_05_105520) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 2021_12_29_064314) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "auth_token"
+    t.integer "lifetime", default: 0
     t.index ["auth_token"], name: "index_messages_on_auth_token", unique: true
   end
 

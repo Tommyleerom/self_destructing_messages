@@ -2,7 +2,7 @@ class Message < ApplicationRecord
 
   has_secure_token :auth_token, length: 24
 
-  before_save :crypt_message
+  before_create :crypt_message
 
   def encrypt text
     text = text.to_s unless text.is_a? String
