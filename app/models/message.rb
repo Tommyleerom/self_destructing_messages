@@ -1,6 +1,8 @@
 class Message < ApplicationRecord
 
-  has_secure_token :auth_token, length: 24
+  SECURE_TOKEN_LENGTH = 24
+
+  has_secure_token :auth_token, length: SECURE_TOKEN_LENGTH
 
   before_create :crypt_message
 
