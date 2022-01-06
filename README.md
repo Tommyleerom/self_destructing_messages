@@ -1,24 +1,27 @@
-# README
+Build a web application, which creates text self-destructing
+messages.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+**Requirements**
 
-Things you may want to cover:
+A user opens the website and creates a message. The application generates a safe link to this saved message
 
-* Ruby version
+The user should be able to choose a destruction option:
 
-* System dependencies
+- destroy message after the first link visit
 
-* Configuration
+- destroy after 1 hour
 
-* Database creation
+All the messages stored on the server side should be encrypted using the AES algorithm (you can use any library for text encryption).
 
-* Database initialization
+Cover your application with the unit and integration tests using
+rspec.
 
-* How to run the test suite
+**Technologies**
 
-* Services (job queues, cache servers, search engines, etc.)
+Deploy your application to Heroku.
 
-* Deployment instructions
+**Bonus points for implementing**
 
-* ...
+- to view the message, the user should enter a correct password
+
+- self-destruction of messages after a given number of link visits or after a given number of hours
