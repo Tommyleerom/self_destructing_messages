@@ -16,5 +16,13 @@ Rails.application.routes.draw do
   delete '/messages/:auth_token', to: 'messages#destroy'
 
 
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+  root 'messages#new'
+>>>>>>> Stashed changes
+=======
+  root 'messages#new'
+>>>>>>> Stashed changes
 
 end
