@@ -3,7 +3,7 @@ require 'sidekiq/web'
 Rails.application.routes.draw do
   mount Sidekiq::Web => '/sidekiq'
 
-  root 'messages#new'
+  root 'messages#index'
 
   #resources :messages, except: %i[edit update]
 
@@ -14,15 +14,5 @@ Rails.application.routes.draw do
   get '/messages/:auth_token', to: 'messages#show', as: 'message'
 
   delete '/messages/:auth_token', to: 'messages#destroy'
-
-
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-  root 'messages#new'
->>>>>>> Stashed changes
-=======
-  root 'messages#new'
->>>>>>> Stashed changes
 
 end
